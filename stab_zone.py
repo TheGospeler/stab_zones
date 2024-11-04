@@ -61,12 +61,12 @@ map.add_basemap('HYBRID')
 # map.split_map(left_layer, right_layer)
 
 if feature_l == 'Field Boundaries':
-    map.add_shapefile(aoi_shp, "Field Boundaries")
+    map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
     #map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
     map.add_raster(info_dict[feature_r], layer_name=feature_l)
 
 elif feature_r == 'Field Boundaries':
-    map.add_shapefile(aoi_shp, "Field Boundaries")
+    map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
     #map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
     map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
