@@ -40,10 +40,10 @@ with right:
 # creating a dictionary that stores that holds the location of the feature/ Raster
 
 info_dict = {
-  "Landsat": "data/rasters/Landsat.tif",
-  "Sentinel": "data/rasters/Sentinel.tif",
-  "Planet": "data/rasters/Planet.tif",
-  "Field Boundary": "data/shapefile/Field123.shp"
+  "Landsat": r"data/rasters/Landsat.tif",
+  "Sentinel": r"data/rasters/Sentinel.tif",
+  "Planet": r"data/rasters/Planet.tif",
+  "Field Boundary": geemap.shp_to_ee(r"data/shapefile/Field123.shp"geemap.shp_to_ee)
 }
 
 # read important file 
@@ -61,11 +61,11 @@ map.add_basemap('HYBRID')
 # map.split_map(left_layer, right_layer)
 
 if feature_l == 'Field Boundaries':
-    map.add_shapefile(info_dict[feature_l], {}, "Field Boundaries")
+    map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
     map.add_raster(info_dict[feature_r], layer_name=feature_l)
 
 elif feature_r == 'Field Boundaries':
-    map.add_shapefile(info_dict[feature_r], {}, "Field Boundaries")
+    map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
     map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
 else:
