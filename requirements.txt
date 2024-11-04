@@ -1,2 +1,17 @@
+folium==0.13
 geemap
+leafmap
+geopandas
+jupyter-server-proxy
+keplergl
+leafmap
+pycrs
+rasterio
+localtileserver
+nbserverproxy
+xarray
 streamlit
+streamlit-bokeh-events
+streamlit-folium
+streamlit-keplergl
+tropycal
