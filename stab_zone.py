@@ -43,7 +43,7 @@ info_dict = {
   "Landsat": r"data/rasters/Landsat.tif",
   "Sentinel": r"data/rasters/Sentinel.tif",
   "Planet": r"data/rasters/Planet.tif",
-  "Field Boundary": geemap.shp_to_ee(r"data/shapefile/Field123.shp"geemap.shp_to_ee)
+  "Field Boundary": geemap.shp_to_ee(r"data/shapefile/Field123.shp")
 }
 
 # read important file 
