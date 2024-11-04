@@ -1,13 +1,13 @@
 import ee
 import datetime
-import geemap
+# import geemap
 import json
 import xarray
 import pycrs
 import rasterio
 import localtileserver
 import streamlit as st
-# import geemap.foliumap as geemap
+import geemap.foliumap as geemap
 
 # setting webpage title and icon
 st.set_page_config(page_title="Dynamic Yield Stability Map", page_icon='🛰️', layout='wide')
