@@ -4,11 +4,11 @@ geopandas
 jupyter-server-proxy
 keplergl
 leafmap
+pycrs
+rasterio
 localtileserver
 nbserverproxy
-owslib
-palettable
-plotly
+xarray
 streamlit
 streamlit-bokeh-events
 streamlit-folium
