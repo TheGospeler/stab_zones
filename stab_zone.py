@@ -40,10 +40,10 @@ with right:
 # creating a dictionary that stores that holds the location of the feature/ Raster
 
 info_dict = {
-  "Landsat": r"data/rasters/Landsat.tif",
-  "Sentinel": r"data/rasters/Sentinel.tif",
-  "Planet": r"data/rasters/Planet.tif",
-  "Field Boundary": r"data/shapefile/Field123.shp"
+  "Landsat": "data/rasters/Landsat.tif",
+  "Sentinel": "data/rasters/Sentinel.tif",
+  "Planet": "data/rasters/Planet.tif",
+  "Field Boundary": "data/shapefile/Field123.shp"
 }
 
 # read important file 
