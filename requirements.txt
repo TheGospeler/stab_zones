@@ -14,4 +14,3 @@ streamlit-bokeh-events
 streamlit-folium
 streamlit-keplergl
 tropycal
-json
