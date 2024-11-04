@@ -2,8 +2,12 @@ import ee
 import datetime
 import geemap
 import json
-
+import xarray
+import pycrs
+import rasterio
+import localtileserver
 import streamlit as st
+import geemap.foliumap as geemap
 
 # setting webpage title and icon
 st.set_page_config(page_title="Dynamic Yield Stability Map", page_icon='🛰️', layout='wide')
@@ -52,21 +56,21 @@ map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
 map.add_basemap('HYBRID')
 # map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
-left_layer = geemap.ee_tile_layer(info_dict[feature_l], name=feature_l)
-right_layer = geemap.ee_tile_layer(info_dict[feature_r], name=feature_r)
-map.split_map(left_layer, right_layer)
+# left_layer = geemap.ee_tile_layer(info_dict[feature_l], name=feature_l)
+# right_layer = geemap.ee_tile_layer(info_dict[feature_r], name=feature_r)
+# map.split_map(left_layer, right_layer)
 
-# if feature_l == 'Field Boundaries':
-#     map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
-#     map.add_raster(info_dict[feature_r], layer_name=feature_l)
+if feature_l == 'Field Boundaries':
+    map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
+    map.add_raster(info_dict[feature_r], layer_name=feature_l)
 
-# elif feature_r == 'Field Boundaries':
-#     map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
-#     map.add_raster(info_dict[feature_r], layer_name=feature_r)
+elif feature_r == 'Field Boundaries':
+    map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
+    map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
-# else:
-#     map.add_raster(info_dict[feature_r], layer_name=feature_r)
-#     map.add_raster(info_dict[feature_l], layer_name=feature_l)
+else:
+    map.add_raster(info_dict[feature_r], layer_name=feature_r)
+    map.add_raster(info_dict[feature_l], layer_name=feature_l)
 
 # Display map
 map.to_streamlit(height=600)
