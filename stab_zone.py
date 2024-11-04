@@ -63,7 +63,8 @@ elif feature_r == 'Field Boundaries':
     map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
 else:
-    map.add_raster(planet)
+    map.add_raster(info_dict[feature_r], layer_name=feature_r)
+    map.add_raster(info_dict[feature_l], layer_name=feature_l)
 
 # Display map
 map.to_streamlit(height=600)
