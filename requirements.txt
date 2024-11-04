@@ -1,6 +1,7 @@
 folium
 geemap
 leafmap
+numpy
 geopandas
 jupyter-server-proxy
 keplergl

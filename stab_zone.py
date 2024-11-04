@@ -4,7 +4,9 @@ import datetime
 import json
 import xarray
 import pycrs
+import folium
 import rasterio
+import numpy as np
 import localtileserver
 import streamlit as st
 import geemap.foliumap as geemap
@@ -56,6 +58,31 @@ map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
 map.add_basemap('HYBRID')
 map.add_raster(info_dict[feature_r], layer_name=feature_r)
 map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
+
+
+# adding rasters
+src = rasterio.open(planet)
+array = src.read()
+bounds = src.bounds
+
+x1,y1,x2,y2 = src.bounds
+bbox = [(bounds.bottom, bounds.left), (bounds.top, bounds.right)]
+
+img = folium.raster_layers.ImageOverlay(
+    name="Planet",
+    image=np.moveaxis(array, 0, -1),
+    bounds=bbox,
+    opacity=1,
+    interactive=True,
+    cross_origin=False,
+    zindex=1,
+)
+
+img.add_to(map)
+folium.LayerControl().add_to(map)
+
+
+
 
 # left_layer = geemap.ee_tile_layer(info_dict[feature_l], name=feature_l)
 # right_layer = geemap.ee_tile_layer(info_dict[feature_r], name=feature_r)
