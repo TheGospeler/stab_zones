@@ -54,19 +54,23 @@ planet = r"data/rasters/Planet.tif"
 # Initialize Geemap map
 map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
 map.add_basemap('HYBRID')
-map.add_raster(info_dict[feature_r], layer_name=feature_r)
+# map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
-if feature_l == 'Field Boundaries':
-    map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
-    map.add_raster(info_dict[feature_r], layer_name=feature_l)
+left_layer = geemap.ee_tile_layer(info_dict[feature_l], name=feature_l)
+right_layer = geemap.ee_tile_layer(info_dict[feature_r], name=feature_r)
+map.split_map(left_layer, right_layer)
 
-elif feature_r == 'Field Boundaries':
-    map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
-    map.add_raster(info_dict[feature_r], layer_name=feature_r)
+# if feature_l == 'Field Boundaries':
+#     map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
+#     map.add_raster(info_dict[feature_r], layer_name=feature_l)
 
-else:
-    map.add_raster(info_dict[feature_r], layer_name=feature_r)
-    map.add_raster(info_dict[feature_l], layer_name=feature_l)
+# elif feature_r == 'Field Boundaries':
+#     map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
+#     map.add_raster(info_dict[feature_r], layer_name=feature_r)
+
+# else:
+#     map.add_raster(info_dict[feature_r], layer_name=feature_r)
+#     map.add_raster(info_dict[feature_l], layer_name=feature_l)
 
 # Display map
 map.to_streamlit(height=600)
