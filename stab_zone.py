@@ -12,11 +12,12 @@ import streamlit as st
 import geemap.foliumap as geemap
 
 # setting webpage title and icon
-st.set_page_config(page_title="Dynamic Yield Stability Map", page_icon='🛰️', layout='wide')
+st.set_page_config(page_title="Yield Stability Map", page_icon='🛰️', layout='wide')
 
-st.title("Interactive Raster Visualization")
+st.title("Interactive YSM Visualization")
 st.write("""
-This website provides a dynamic visualization of the yield stability map (YSM). The sliding window also enables
+This website provides a dynamic visualization of the yield stability map (YSM), enabling the direct observation of pixel variation of the 
+         stability zones, The sliding window also enables
          the comparison of any of the yield stability map created by the different satellite to visualize the 
          effects of the spatial resolution on the yield stability map.
 """)
@@ -30,22 +31,26 @@ json_object = json.dumps(json_object)
 credentials = ee.ServiceAccountCredentials(service_account, key_data=json_object)
 ee.Initialize(credentials)
 
-left, right = st.columns(2)  # month, year column
-with left:
-  st.write('##### Left-side Visualization:')
-  feature_l = st.selectbox('Select Feature / Raster:', ['Landsat', 'Sentinel', 'Planet', 'Field Boundary'], key='option_1')
+# left, right = st.columns(2)  # month, year column
+# with left:
+#   st.write('##### Left-side Visualization:')
+#   feature_l = st.selectbox('Select Feature / Raster:', ['Landsat', 'Sentinel', 'Planet', 'Field Boundary'], key='option_1')
 
-with right:
-  st.write('##### Right-side Visualization:')
-  feature_r = st.selectbox('Select Feature / Raster:', ['Sentinel', 'Landsat', 'Planet', 'Field Boundary'], key='option_2')
+# with right:
+#   st.write('##### Right-side Visualization:')
+#   feature_r = st.selectbox('Select Feature / Raster:', ['Sentinel', 'Landsat', 'Planet', 'Field Boundary'], key='option_2')
+
+# Making use of button instead:
+st.write('<style>div.row-widget.stRadio > div{flex-direction:row;justify-content: center;} </style>', unsafe_allow_html=True)
+st.write('<style>div.st-bf{flex-direction:column;} div.st-ag{font-weight:bold;padding-left:2px;}</style>', unsafe_allow_html=True)
+
+satellite =st.radio("Select Satellite to Visualize",('Landsat', 'Sentinel', 'Planet'))
 
 # creating a dictionary that stores that holds the location of the feature/ Raster
-
 info_dict = {
   "Landsat": r"data/rasters/Landsat.tif",
   "Sentinel": r"data/rasters/Sentinel.tif",
-  "Planet": r"data/rasters/Planet.tif",
-  "Field Boundary": geemap.shp_to_ee(r"data/shapefile/Field123.shp")
+  "Planet": r"data/rasters/Planet.tif"
 }
 
 # read important file 
@@ -56,12 +61,11 @@ planet = r"data/rasters/Planet.tif"
 # Initialize Geemap map
 map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
 map.add_basemap('HYBRID')
-map.add_raster(info_dict[feature_r], layer_name=feature_r)
 map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
 
 
 # adding rasters
-src = rasterio.open(planet)
+src = rasterio.open(info_dict[satellite])
 array = src.read()
 bounds = src.bounds
 
@@ -69,7 +73,7 @@ x1,y1,x2,y2 = src.bounds
 bbox = [(bounds.bottom, bounds.left), (bounds.top, bounds.right)]
 
 img = folium.raster_layers.ImageOverlay(
-    name="Planet",
+    name=satellite,
     image=np.moveaxis(array, 0, -1),
     bounds=bbox,
     opacity=1,
