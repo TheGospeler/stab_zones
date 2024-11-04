@@ -54,6 +54,8 @@ planet = r"data/rasters/Planet.tif"
 # Initialize Geemap map
 map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
 map.add_basemap('HYBRID')
+map.add_raster(info_dict[feature_r], layer_name=feature_r)
+
 if feature_l == 'Field Boundaries':
     map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
     map.add_raster(info_dict[feature_r], layer_name=feature_l)
