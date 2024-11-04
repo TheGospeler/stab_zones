@@ -1,5 +1,5 @@
 folium==0.13
-geemap==0.33.0
+geemap==0.29.4
 leafmap
 geopandas
 jupyter-server-proxy
