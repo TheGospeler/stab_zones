@@ -55,6 +55,7 @@ planet = r"data/rasters/Planet.tif"
 map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
 map.add_basemap('HYBRID')
 map.add_raster(info_dict[feature_r], layer_name=feature_r)
+map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
 
 # left_layer = geemap.ee_tile_layer(info_dict[feature_l], name=feature_l)
 # right_layer = geemap.ee_tile_layer(info_dict[feature_r], name=feature_r)
