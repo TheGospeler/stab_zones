@@ -60,19 +60,19 @@ map.add_basemap('HYBRID')
 # right_layer = geemap.ee_tile_layer(info_dict[feature_r], name=feature_r)
 # map.split_map(left_layer, right_layer)
 
-if feature_l == 'Field Boundaries':
-    map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
-    #map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
-    map.add_raster(info_dict[feature_r], layer_name=feature_l)
+# if feature_l == 'Field Boundaries':
+#     map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
+#     #map.addLayer(info_dict[feature_l], {}, "Field Boundaries")
+#     map.add_raster(info_dict[feature_r], layer_name=feature_l)
 
-elif feature_r == 'Field Boundaries':
-    map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
-    #map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
-    map.add_raster(info_dict[feature_r], layer_name=feature_r)
+# elif feature_r == 'Field Boundaries':
+#     map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
+#     #map.addLayer(info_dict[feature_r], {}, "Field Boundaries")
+#     map.add_raster(info_dict[feature_r], layer_name=feature_r)
 
-else:
-    map.add_raster(info_dict[feature_r], layer_name=feature_r)
-    map.add_raster(info_dict[feature_l], layer_name=feature_l)
+# else:
+#     map.add_raster(info_dict[feature_r], layer_name=feature_r)
+#     map.add_raster(info_dict[feature_l], layer_name=feature_l)
 
 # Display map
 map.to_streamlit(height=600)
