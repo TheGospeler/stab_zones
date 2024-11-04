@@ -1,5 +1,5 @@
 folium==0.13
-geemap
+geemap[extra]
 geopandas
 jupyter-server-proxy
 keplergl
