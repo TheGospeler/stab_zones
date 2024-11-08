@@ -53,12 +53,12 @@ info_dict = {
 }
 
 # read important file 
-aoi_shp = r"data/shapefile/Field123.shp"
+aoi_shp = r"data/shapefile/Main/AOI_WGS84.shp"
 region = geemap.shp_to_ee(aoi_shp)
 planet = r"data/rasters/Planet.tif"
 
 # Initialize Geemap map
-map = geemap.Map(center=[43.582, -84.733], zoom=15, height=600)
+map = geemap.Map(center=[42.8477, -84.95], zoom=15, height=600)
 map.add_basemap('HYBRID')
 map.add_shapefile(aoi_shp, layer_name="Field Boundaries")
 
