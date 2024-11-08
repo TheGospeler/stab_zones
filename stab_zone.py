@@ -42,13 +42,14 @@ ee.Initialize(credentials)
 
 # Making use of button instead:
 
-satellite =st.radio("**Select Satellite to Visualize**",('Landsat', 'Sentinel', 'Planet'), horizontal=True)
+satellite =st.radio("**Select Map to Visualize**",('Landsat', 'Sentinel', 'Planet', 'Actual Yield Map'), horizontal=True)
 
 # creating a dictionary that stores that holds the location of the feature/ Raster
 info_dict = {
   "Landsat": r"data/rasters/Landsat.tif",
   "Sentinel": r"data/rasters/Sentinel.tif",
-  "Planet": r"data/rasters/Planet.tif"
+  "Planet": r"data/rasters/Planet.tif",
+  "Actual Yield Map": r"data/rasters/Actual_yield.tif"
 }
 
 # read important file 
